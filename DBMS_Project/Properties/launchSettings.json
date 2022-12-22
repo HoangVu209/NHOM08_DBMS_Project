@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "DBMS_Project": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "sqlDebugging": false,
+      "jsWebView2Debugging": false,
+      "remoteDebugEnabled": false,
+      "authenticationMode": "None",
+      "hotReloadEnabled": false
+    }
+  }
+}

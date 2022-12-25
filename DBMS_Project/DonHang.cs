@@ -113,14 +113,15 @@ namespace DBMS_Project
                 danhSachMonAn.Add(monAn);                    
             }
            
-            string maTinhTrang = "ST4";
+            string tenTinhTrang = "Waiting";
             int STT = _form.LaySTT();
             string maDoiTac = _form.LayMaDoiTac();
             string maKhachHang = _form.layMaKhachHang();
+            int IDCuaHang = DONHANGBUS.getIDCuaHang(_form.LayMaDoiTac());
             DONHANGDTO donHang = new DONHANGDTO(maDonHang, danhSachMonAn, danhSachSoLuong,
-                           maTinhTrang, maDoiTac, STT, tongTien, maKhachHang);
+                           tenTinhTrang, maDoiTac, STT, tongTien, maKhachHang, IDCuaHang);
             //Lưu xuống database
-            int result = DONHANGBUS.LuuDonHang(maKhachHang, maDonHang, maTinhTrang, maDoiTac, STT);
+            int result = DONHANGBUS.LuuDonHang(maKhachHang, maDonHang, tenTinhTrang, maDoiTac, STT, IDCuaHang);
             int numItems = danhSachMonAn.Count;
             //MessageBox.Show(numItems.ToString());
             for(int i = 0; i < numItems; i++)

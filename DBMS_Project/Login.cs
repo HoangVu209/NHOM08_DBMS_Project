@@ -33,7 +33,11 @@ namespace DBMS_Project
             p.LoaiTaiKhoan = n;
             if (n > 0)
             {
+
                 // Lấy mã sau khi thực hiện
+                int IDAccount = TaiKhoanBUS.getIDAccount(tenDangNhap);
+                p.IDAccount = IDAccount;
+                MessageBox.Show(IDAccount.ToString());
                 string Ma = TaiKhoanBUS.TokenValue(p);
                 //MessageBox.Show(p.LoaiTaiKhoan.ToString());
                 //Nếu là khách hàng thì thể gọi constructor để hiện thị form khách hàng

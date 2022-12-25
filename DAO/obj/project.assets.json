@@ -494,11 +494,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DAO\\DAO.csproj",
+      "projectUniqueName": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DAO\\DAO.csproj",
       "projectName": "DAO",
-      "projectPath": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DAO\\DAO.csproj",
+      "projectPath": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DAO\\DAO.csproj",
       "packagesPath": "C:\\Users\\wuuho\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DAO\\obj\\",
+      "outputPath": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DAO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wuuho\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -515,8 +515,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DTO\\DTO.csproj": {
-              "projectPath": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DTO\\DTO.csproj"
+            "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DTO\\DTO.csproj": {
+              "projectPath": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DTO\\DTO.csproj"
             }
           }
         }

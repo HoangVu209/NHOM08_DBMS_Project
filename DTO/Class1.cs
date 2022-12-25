@@ -9,7 +9,7 @@ namespace Project.DTO
         private string _tenDangNhap;
         private string _matKhau;
         private int _loaiTaiKhoan;
-
+        private int _IDAccount;
         public string TenDangNhap { get { return _tenDangNhap; } set { _tenDangNhap = value; } }
         public string MatKhau { get { return this._matKhau; } set { this._matKhau = value; } }
         public int LoaiTaiKhoan { get { return this._loaiTaiKhoan; } set { this._loaiTaiKhoan = value; } }
@@ -18,13 +18,16 @@ namespace Project.DTO
             _tenDangNhap = "";
             _matKhau = "";
             _loaiTaiKhoan = 0;
+            _IDAccount = 0;
         }
         public TaiKhoanDTO(string tenDangNhap, string MatKhau, int LoaiTaiKhoan)
         {
             _tenDangNhap = tenDangNhap;
             _matKhau = MatKhau;
             _loaiTaiKhoan = LoaiTaiKhoan;
+            _IDAccount = 0;
         }
+        public int IDAccount { get { return _IDAccount; } set { _IDAccount = value; } }
     }
     public class KhachHangDTO
     {
@@ -32,21 +35,24 @@ namespace Project.DTO
         private string _hoTen;
         private string _dienThoai;
         private string _email;
-        private string _tenDangNhap;
+        private int _IDTaiKhoan;
+        //private string _tenDangNhap;
 
         public string MaKhachHang { get { return _maKhachHang; } set { _maKhachHang = value; } }
         public string HoTen { get { return _hoTen; } set { _hoTen = value; } }
         public string DienThoai { get { return _dienThoai; } set { _dienThoai = value; } }
         public string Email { get { return _email; } set { _email = value; } }
-        public string TenDangNhap { get { return _tenDangNhap; } set { _tenDangNhap = value; } }
+        //public string TenDangNhap { get { return _tenDangNhap; } set { _tenDangNhap = value; } }
 
+        public int IDTaiKhoan { get { return _IDTaiKhoan; } set { _IDTaiKhoan = value; } }
         public KhachHangDTO()
         {
             _maKhachHang = string.Empty;
             _hoTen = string.Empty;
             _dienThoai = string.Empty;
             _email = string.Empty;
-            _tenDangNhap = string.Empty;
+            //_tenDangNhap = string.Empty;
+            _IDTaiKhoan = 0;
         }
         public KhachHangDTO(string tenDangNhap)
         {
@@ -54,13 +60,13 @@ namespace Project.DTO
             _hoTen = string.Empty;
             _dienThoai = string.Empty;
             _email = string.Empty;
-            _tenDangNhap = tenDangNhap;
+            _IDTaiKhoan = 0;
+           // _tenDangNhap = tenDangNhap;
         }
         public KhachHangDTO(string DienThoai, string HoTen, string Email
                             , string MaKhachHang)
         {
-            if (_tenDangNhap == null)
-                _tenDangNhap = string.Empty;
+            _IDTaiKhoan = 0;
             _maKhachHang = MaKhachHang;
             _hoTen = HoTen;
             _email = Email;
@@ -213,7 +219,7 @@ namespace Project.DTO
         private int _STT;
         private decimal _tongTien;
         private string _maKhachHang;
-        
+        private int _IDCuaHang;
         public DONHANGDTO()
         {
             _maDonHang = string.Empty;
@@ -224,8 +230,9 @@ namespace Project.DTO
             _STT = 0;
             _tongTien = 0;
             _maKhachHang = string.Empty;
+            _IDCuaHang = 0;
         }
-        public DONHANGDTO(string maDonHang,List<MonAnDTO> danhSachMonAn, List<int>listdanhSachSL)
+        public DONHANGDTO(string maDonHang,List<MonAnDTO> danhSachMonAn, List<int>listdanhSachSL, int IDCuaHang)
         {
             _maDonHang = maDonHang;
             _danhSachMonAn = new List<MonAnDTO>();
@@ -237,9 +244,10 @@ namespace Project.DTO
             _tongTien = 0;
             _maDoiTac = string.Empty;
             _maKhachHang = string.Empty;
+            _IDCuaHang = IDCuaHang;
         }
         public DONHANGDTO(string maDonHang, List<MonAnDTO> danhSachMonAn, List<int> danhSachSL,
-                           string maTinhTrang, string maDoiTac, int STT, decimal tongTien, string MaKhachHang)
+                           string maTinhTrang, string maDoiTac, int STT, decimal tongTien, string MaKhachHang, int IDCuaHang)
         {
             _maDonHang = maDonHang;
             _danhSachMonAn = new List<MonAnDTO>();
@@ -251,6 +259,7 @@ namespace Project.DTO
             _STT = STT;
             _tongTien = tongTien;
             _maKhachHang = MaKhachHang;
+            _IDCuaHang = IDCuaHang;
 
         }
         
@@ -262,6 +271,7 @@ namespace Project.DTO
         public decimal TongTien { get { return _tongTien; } set { _tongTien = value; } }
         public int STT { get { return _STT; } set { _STT = value; } }
         public string maKhachHang { get { return _maKhachHang; } set { _maKhachHang = value;} }
+        public int IDCuaHang { get { return _IDCuaHang; } set { _IDCuaHang = value; } }
     }
        
 }

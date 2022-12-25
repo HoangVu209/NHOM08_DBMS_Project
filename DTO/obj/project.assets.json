@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DTO\\DTO.csproj",
+      "projectUniqueName": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DTO\\DTO.csproj",
       "projectName": "DTO",
-      "projectPath": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DTO\\DTO.csproj",
+      "projectPath": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DTO\\DTO.csproj",
       "packagesPath": "C:\\Users\\wuuho\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wuuho\\OneDrive\\Desktop\\Presentation\\DTO\\obj\\",
+      "outputPath": "G:\\My Drive\\Project\\Advanced Database Group\\Report 02\\Presentation\\DTO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wuuho\\AppData\\Roaming\\NuGet\\NuGet.Config",

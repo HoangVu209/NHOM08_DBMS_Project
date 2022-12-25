@@ -54,7 +54,7 @@ namespace DBMS_Project
             int selection = 0;
             if(rdoKhongLoi.Checked) selection = 1;
             int result = DOITACBUS.TiepNhanDonHang(_donHang.MaDonHang, selection);
-            MessageBox.Show(result.ToString());
+            //MessageBox.Show(result.ToString());
             if (result == 1)
                 MessageBox.Show("Chấp nhận thành công!");
             else if (result == 2)

@@ -21,6 +21,10 @@ namespace Project.BUS
             string tokenValue = TaiKhoanDAO.TokenValue(t);
             return tokenValue;
         }
+        public static int getIDAccount(string tenDangNhap)
+        {
+            return TaiKhoanDAO.getIDAccount(tenDangNhap);
+        }
 
     }
     public class KhachHangBUS
@@ -93,16 +97,20 @@ namespace Project.BUS
             string result = DONHANGDAO.TaoMa();
             return result;
         }
-        public static int LuuDonHang(string maKhachHang, string maDonHang, string maTinhTrang, string maDoiTac, int STT)
+        public static int LuuDonHang(string maKhachHang, string maDonHang, string maTinhTrang, string maDoiTac, int STT, int IDCuaHang)
         {
             //DONHANGDTO dh = new DONHANGDTO();
-            int result = DONHANGDAO.LuuDonHang(maKhachHang, maDonHang, maTinhTrang, maDoiTac, STT);
+            int result = DONHANGDAO.LuuDonHang(maKhachHang, maDonHang, maTinhTrang, maDoiTac, STT, IDCuaHang);
             return result;
         }
         public static string layTinhTrang(string maDonHang)
         {
             string result = DONHANGDAO.LayTinhTrang(maDonHang);
             return result;
+        }
+        public static int getIDCuaHang(string maDoiTac)
+        {
+            return DONHANGDAO.LayIDCuaHang(maDoiTac);
         }
     }
 

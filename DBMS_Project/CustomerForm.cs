@@ -28,7 +28,8 @@ namespace DBMS_Project
             _kh.Email = (String)table.Rows[0]["Email"];
             _kh.HoTen = (String)table.Rows[0]["hoTen"];
             _kh.DienThoai = (String)table.Rows[0]["dienThoai"];
-            _kh.TenDangNhap = (String)table.Rows[0]["tenDangNhap"];
+            // _kh.TenDangNhap = (String)table.Rows[0]["tenDangNhap"];
+            _kh.IDTaiKhoan = Convert.ToInt32(table.Rows[0]["IDTaiKhoan"]);
 
         }
         public CustomerForm(KhachHangDTO kh, DONHANGDTO dh)
@@ -148,9 +149,9 @@ namespace DBMS_Project
              int _STT = dh.STT;
              decimal _tongTien = dh.TongTien;
             string _maKhachHang = dh.maKhachHang;
+            int IDCuaHang = dh.IDCuaHang;
 
-
-            _dh = new DONHANGDTO(_maDonHang, _danhSachMonAn, _danhSachSL, _maTinhTrang, _maDoiTac, _STT, _tongTien, _maKhachHang);
+            _dh = new DONHANGDTO(_maDonHang, _danhSachMonAn, _danhSachSL, _maTinhTrang, _maDoiTac, _STT, _tongTien, _maKhachHang, IDCuaHang);
 
         }
 

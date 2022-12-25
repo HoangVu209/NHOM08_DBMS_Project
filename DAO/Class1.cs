@@ -9,7 +9,7 @@ namespace Project.DAO
     {
         static public SqlConnection? _connection = null;
         static public SqlCommand? _command = null;
-        static String _connectionString = @"Data Source=WUDV;Initial Catalog=ProjectDBMS01;Integrated Security=True";
+        static String _connectionString = @"Data Source=WUDV;Initial Catalog=OfficialAdvanced;Integrated Security=True";
 
         //Thêm một tài khoản
         public static int Insert(TaiKhoanDTO t)
@@ -85,11 +85,11 @@ namespace Project.DAO
                 _command.Connection = _connection;
 
                 //truyền tham số
-                _command.Parameters.Add("@tenDangNhap", SqlDbType.VarChar, 115);
+                _command.Parameters.Add("@IDTaiKhoan", SqlDbType.Int);
                 _command.Parameters.Add("@loaiTaiKhoan", SqlDbType.Int);
                
                 //truyền giá trị cho tham số
-                _command.Parameters["@tenDangNhap"].Value = t.TenDangNhap;
+                _command.Parameters["@IDTaiKhoan"].Value = t.IDAccount;
                 _command.Parameters["@loaiTaiKhoan"].Value = t.LoaiTaiKhoan;
                 
                 //paraReturn.Direction = ParameterDirection.ReturnValue;
@@ -97,7 +97,7 @@ namespace Project.DAO
                 string result = "";
                
                 //thực thi SQL
-                int n = _command.ExecuteNonQuery();
+               // int n = _command.ExecuteNonQuery();
                 DataTable table = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(_command);
                 adapter.Fill(table);
@@ -112,12 +112,45 @@ namespace Project.DAO
             }
             catch(ArgumentException e) { return e.ToString(); }
         }
+        public static int getIDAccount(string tenDangNhap)
+        {
+            try
+            {
+                _connection = new SqlConnection(_connectionString);
+                _connection.Open();
+                String procName = "spLayIDTaiKhoan";
+                _command = new SqlCommand(procName);
+                _command.CommandType = System.Data.CommandType.StoredProcedure;
+                _command.Connection = _connection;
+
+                //truyền tham số
+                _command.Parameters.Add("@tenDangNhap", SqlDbType.VarChar, 115);
+                var returnParameter = _command.Parameters.Add("@ReturnValue", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                //truyền giá trị cho tham số
+                _command.Parameters["@tenDangNhap"].Value = tenDangNhap;
+               
+                int n = _command.ExecuteNonQuery();
+
+                int result = Convert.ToInt32(returnParameter.Value);
+                _connection.Close();
+
+
+                
+                return result;
+
+            }
+            catch (ArgumentException e) { 
+                Console.WriteLine(e.ToString());
+                return 0;
+            }
+        }
     }
     public class KhachHangDAO
     {
         static public SqlConnection? _connection = null;
         static public SqlCommand? _command = null;
-        static String _connectionString = @"Data Source=WUDV;Initial Catalog=ProjectDBMS01;Integrated Security=True";
+        static String _connectionString = @"Data Source=WUDV;Initial Catalog=OfficialAdvanced;Integrated Security=True";
         public static DataTable GetInfor(string MaKH)
         {
             try
@@ -249,7 +282,7 @@ namespace Project.DAO
     {
         static public SqlConnection? _connection = null;
         static public SqlCommand? _command = null;
-        static String _connectionString = @"Data Source=WUDV;Initial Catalog=ProjectDBMS01;Integrated Security=True";
+        static String _connectionString = @"Data Source=WUDV;Initial Catalog=OfficialAdvanced;Integrated Security=True";
         public static DataTable GetInfor()
         {
            
@@ -525,7 +558,7 @@ namespace Project.DAO
     {
         static public SqlConnection? _connection = null;
         static public SqlCommand? _command = null;
-        static String _connectionString = @"Data Source=WUDV;Initial Catalog=ProjectDBMS01;Integrated Security=True";
+        static String _connectionString = @"Data Source=WUDV;Initial Catalog=OfficialAdvanced;Integrated Security=True";
         public static string TaoMa()
         {
             try
@@ -558,7 +591,7 @@ namespace Project.DAO
                 return e.ToString();
             }
         }
-        public static int LuuDonHang(string maKhachHang, string maDonHang, string maTinhTrang, string maDoiTac, int STT)
+        public static int LuuDonHang(string maKhachHang, string maDonHang, string maTinhTrang, string maDoiTac, int STT, int IDCuaHang)
         {
             try
             {
@@ -573,17 +606,15 @@ namespace Project.DAO
                 //truyền tham số
                 //_command.Parameters.Add("@maDonHang", SqlDbType.Char, 8);
                 _command.Parameters.Add("@maKhachHang", SqlDbType.Char, 8);
-                _command.Parameters.Add("@maTinhTrang", SqlDbType.Char, 3);
-                _command.Parameters.Add("@maDoiTac", SqlDbType.Char, 8);
-                _command.Parameters.Add("@STT", SqlDbType.Int);
+                _command.Parameters.Add("@tenTinhTrang", SqlDbType.VarChar, 30);
+                _command.Parameters.Add("@IDCuaHang", SqlDbType.Int);
                 _command.Parameters.Add("@thoiGianLap", SqlDbType.DateTime);
 
                 //truyền giá trị cho tham số
                 //_command.Parameters["@maDonHang"].Value = maDonHang;
                 _command.Parameters["@maKhachHang"].Value = maKhachHang;
-                _command.Parameters["@maTinhTrang"].Value = maTinhTrang;
-                _command.Parameters["@maDoiTac"].Value = maDoiTac;
-                _command.Parameters["@STT"].Value = STT;
+                _command.Parameters["@tenTinhTrang"].Value = maTinhTrang;
+                _command.Parameters["@IDCuaHang"].Value = IDCuaHang;
                 _command.Parameters["@thoiGianLap"].Value = DateTime.Now;
 
 
@@ -637,7 +668,7 @@ namespace Project.DAO
                 if (table.Rows[0]["tenTinhTrang"] != DBNull.Value)
                     result = (String)table.Rows[0]["tenTinhTrang"];
                 else
-                    result = "Tiếp nhận và xử lý";
+                    result = "Recieved";
                 return result;
 
 
@@ -664,7 +695,7 @@ namespace Project.DAO
 
                 //truyền tham số
                 _command.Parameters.Add("@maDonHang", SqlDbType.Char, 8);
-                _command.Parameters.Add("@maTinhTrang", SqlDbType.Char, 3);
+                _command.Parameters.Add("@tenTinhTrang", SqlDbType.VarChar, 30);
                 var returnParameter = _command.Parameters.Add("@result", SqlDbType.Int);
                 returnParameter.Direction = ParameterDirection.ReturnValue;
                 //_command.Parameters.Add("giaTriTraVe", SqlDbType)
@@ -672,7 +703,54 @@ namespace Project.DAO
 
                 //truyền giá trị cho tham số
                 _command.Parameters["@maDonHang"].Value = maDonHang;
-                _command.Parameters["@maTinhTrang"].Value = "ST4";
+                _command.Parameters["@tenTinhTrang"].Value = "Canceled"; 
+                    
+
+
+
+                //thực thi SQL
+                int n = _command.ExecuteNonQuery();
+                int result = Convert.ToInt32(returnParameter.Value);
+
+                _connection.Close();
+                //string result;
+                return result;
+
+
+                //return result;
+            }
+            catch (ArgumentException e)
+            {
+                //(e.ToString());
+                Console.WriteLine(e.ToString());
+                return 0;
+            }
+        }
+
+        public static int LayIDCuaHang(string maDoiTac)
+        {
+            try
+            {
+                _connection = new SqlConnection(_connectionString);
+                _connection.Open();
+                //Lưu đơn hàng
+                //String procName = "HuyDonHang";
+                String procName = "spTimIDCuaHang";
+                _command = new SqlCommand(procName);
+                _command.CommandType = System.Data.CommandType.StoredProcedure;
+                _command.Connection = _connection;
+
+                //truyền tham số
+                _command.Parameters.Add("@maDoiTac", SqlDbType.Char, 8);
+               
+                var returnParameter = _command.Parameters.Add("@result", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                //_command.Parameters.Add("giaTriTraVe", SqlDbType)
+
+
+                //truyền giá trị cho tham số
+                _command.Parameters["@maDoiTac"].Value = maDoiTac ;
+            
 
 
 
@@ -699,7 +777,7 @@ namespace Project.DAO
     {
         static public SqlConnection? _connection = null;
         static public SqlCommand? _command = null;
-        static String _connectionString = @"Data Source=WUDV;Initial Catalog=ProjectDBMS01;Integrated Security=True";
+        static String _connectionString = @"Data Source=WUDV;Initial Catalog=OfficialAdvanced;Integrated Security=True";
         public static int laySTT(string maDoiTac)
         {
 
@@ -743,7 +821,7 @@ namespace Project.DAO
     {
         static public SqlConnection? _connection = null;
         static public SqlCommand? _command = null;
-        static String _connectionString = @"Data Source=WUDV;Initial Catalog=ProjectDBMS01;Integrated Security=True";
+        static String _connectionString = @"Data Source=WUDV;Initial Catalog=OfficialAdvanced;Integrated Security=True";
         public static DataTable layMaMonAn()
         {
            

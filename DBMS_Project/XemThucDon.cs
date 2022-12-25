@@ -97,7 +97,8 @@ namespace DBMS_Project
             //string maKhachHang = _form.getMaKH();
             List<int> danhSachSL = new List<int>(1);
             string maDonHang = DONHANGBUS.TaoMa();
-            DONHANGDTO donHang = new DONHANGDTO(maDonHang, danhSachMonAn, danhSachSL);
+            int IDCuaHang = DONHANGBUS.getIDCuaHang(_td.MaDoiTac);
+            DONHANGDTO donHang = new DONHANGDTO(maDonHang, danhSachMonAn, danhSachSL, IDCuaHang);
             this.Hide();
             Form DonHang = new DonHang(this, donHang);
             DonHang.Show();

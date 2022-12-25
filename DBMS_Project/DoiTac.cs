@@ -105,9 +105,9 @@ namespace DBMS_Project
         {
             string TinhTrang = (String)cbbDonHang.SelectedItem;
             string maTinhTrang = string.Empty;
-            if(TinhTrang == "Chờ Nhận")
+            if(TinhTrang == "Chờ nhận")
             {
-                maTinhTrang = "ST4";
+                maTinhTrang = "Waiting";
             }
             string maDoiTac = _doiTac.MaDoiTac;
             DataTable table = new DataTable();
@@ -119,6 +119,7 @@ namespace DBMS_Project
                 int numItems = table.Rows.Count;
                 List<MonAnDTO> dsMonAn = new List<MonAnDTO>();
                 List<int> dsSL = new List<int>();
+                int IDCuaHang = DONHANGBUS.getIDCuaHang(_doiTac.MaDoiTac);
                 for (int i = 0; i < numItems; i++)
                 {
                     MonAnDTO monAn = new MonAnDTO();
@@ -126,7 +127,7 @@ namespace DBMS_Project
                     dsSL.Add(Convert.ToInt32(table.Rows[i]["soLuong"]));
                     dsMonAn.Add(monAn);
                 }
-                DONHANGDTO donHang = new DONHANGDTO(maDonHang, dsMonAn, dsSL);
+                DONHANGDTO donHang = new DONHANGDTO(maDonHang, dsMonAn, dsSL, IDCuaHang);
                 TiepNhanDonHang form = new TiepNhanDonHang(this, donHang);
                 this.Hide();
                 form.Show();

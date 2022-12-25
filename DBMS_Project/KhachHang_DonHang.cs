@@ -85,7 +85,7 @@ namespace DBMS_Project
         {
            
             int result = DONHANGDAO.HuyDonHang(_dh.MaDonHang);
-            MessageBox.Show(result.ToString());
+            //MessageBox.Show(result.ToString());
 
             if (result == 0)
             {

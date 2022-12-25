@@ -110,7 +110,7 @@ namespace DBMS_Project
             if(iUpdate >0)
                 MessageBox.Show("Đã cập nhật thành công: " +  iUpdate.ToString());
             else
-                MessageBox.Show("Cập nhật thất bại: " + iUpdate.ToString());
+                MessageBox.Show("Cập nhật thất bại");
         }
 
         private void btnThemMonAn_Click(object sender, EventArgs e)
